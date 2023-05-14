@@ -5,7 +5,6 @@ import {OpsTaskCreator} from "@gelato/integrations/OpsTaskCreator.sol";
 import {ModuleData, Module} from "@gelato/integrations/Types.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import {Insurance} from "./Insurance.sol";
 
 contract SmartGhoTx is OpsTaskCreator {
     address internal admin;
@@ -13,16 +12,14 @@ contract SmartGhoTx is OpsTaskCreator {
     //mapping(uint => bool) public executed;
     bool executed;
 
-    Insurance public insuranceContract;
 
     modifier onlyAdmin {
         require(msg.sender == admin, "Not allowed address.");
         _; // Continue the execution of the function called
     }
 
-    constructor(address _opsAddress, address _insuranceContractAddress) OpsTaskCreator(_opsAddress, address(this)) {
+    constructor(address _opsAddress) OpsTaskCreator(_opsAddress, address(this)) {
         admin = msg.sender;
-        insuranceContract = Insurance(_insuranceContractAddress);
 
     }
 
@@ -67,15 +64,7 @@ contract SmartGhoTx is OpsTaskCreator {
         // User op here
         IERC20(address(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6)).approve(address(0x00), 1);
 
-        // Inusrance
-        bytes memory insuredEvent = abi.encode(0x01);
-
-        insuranceContract.issueInsurance(
-            1,
-            msg.sender,
-            insuredEvent
-        );
-
+   
         // Pay the fees
         (uint256 fee, address feeToken) = _getFeeDetails();
 

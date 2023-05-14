@@ -12,7 +12,7 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // Deploy SmartGhoTx
-        new SmartGhoTx(vm.envAddress("OPS_GOERLI"), 0x99cFF72E1899a65457d20b845952d9C1AEa4a25A);
+        new SmartGhoTx(vm.envAddress("OPS_GOERLI"));
         
         vm.stopBroadcast();
     }

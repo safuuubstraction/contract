@@ -8,6 +8,10 @@
 source .env
 forge install
 forge test -vv
-forge script script/Deploy_MUMBAI.s.sol:DeployScript --broadcast --rpc-url ${RPC_URL_MUMBAI} --verifier-url ${VERIFIER_URL_MUMBAI} --etherscan-api-key ${POLYGON_ETHERSCAN_API_KEY} --verify
+forge create --rpc-url "https://goerli.infura.io/v3/f1bed5a8674b48cdad93d8f6c69e7201" \   
+--constructor-args "0xc1C6805B857Bef1f412519C4A842522431aFed39" \
+--private-key blabla \
+src/Abstraction.sol:SmartGhoTx --etherscan-api-key "IZVZKTEUYYTTQVI8T41M5S69XHQV457HFD" --verify
 ```
+
 
