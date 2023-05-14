@@ -15,3 +15,4 @@ src/Abstraction.sol:SmartGhoTx --etherscan-api-key "IZVZKTEUYYTTQVI8T41M5S69XHQV
 ```
 
 
+Working implementation of the onchain creation of an userOp, that will be executed by a call from a gelato node and that will be paid with GHO tokens.
